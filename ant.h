@@ -19,6 +19,7 @@ public:
     bool isFoodInFront();
     void initBehavior(BehaviorGenerator & behaviorGenerator);
     void getPosition(int &row, int &col);
+    Direction getDirection();
 private:
     Behavior  behavior;
     Direction  direction;

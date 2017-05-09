@@ -13,6 +13,7 @@ class GameField
 {
 public:
     GameField(int startRow, int startColumn);
+    GameField(int startRow, int startColumn, Behavior behavior);
 
     void operator=(const GameField & g);
     void updateField();
@@ -33,6 +34,7 @@ public:
     bool isApplesExist();
 
     Cell** getCells();
+    Direction getAntDirection();
 
 private:
     Ant ant;

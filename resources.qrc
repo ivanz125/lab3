@@ -1,6 +1,9 @@
 <RCC>
     <qresource prefix="/img">
         <file>res/grid.jpg</file>
-        <file>res/grid_old.jpg</file>
+        <file>res/ant_east.png</file>
+        <file>res/ant_north.png</file>
+        <file>res/ant_south.png</file>
+        <file>res/ant_west.png</file>
     </qresource>
 </RCC>

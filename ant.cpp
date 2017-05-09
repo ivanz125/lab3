@@ -99,3 +99,8 @@ void Ant::getPosition(int & row, int & col)
     row = rowPosition;
     col = columnPosition;
 }
+
+Direction Ant::getDirection()
+{
+    return direction;
+}

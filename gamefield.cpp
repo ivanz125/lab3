@@ -17,6 +17,23 @@ GameField::GameField(int startRow, int startColumn)
     ant = Ant(this, startRow, startColumn);
 }
 
+GameField::GameField(int startRow, int startColumn, Behavior behavior)
+{
+    this->startColumn = startColumn;
+    this->startRow = startRow;
+
+    cells = new Cell*[FIELD_SIZE];
+    for (int i = 0; i < FIELD_SIZE; i++)
+        cells[i] = new Cell[FIELD_SIZE];
+
+    FieldGenerator fGen(cells);
+
+    apples = applesCount();
+    cells[startRow][startColumn] = PASSED;
+
+    ant = Ant(this, behavior, startRow, startColumn);
+}
+
 void GameField::operator=(const GameField & field)
 {
     startRow = field.startRow;
@@ -90,7 +107,7 @@ Direction GameField::leftDirection(Direction d)
         case NORTH: return EAST;
         case SOUTH: return WEST;
         case EAST: return SOUTH;
-        defaut: return NORTH;
+        default: return NORTH;
     }
 }
 
@@ -123,4 +140,9 @@ bool GameField::isApplesExist()
 Cell** GameField::getCells()
 {
     return cells;
+}
+
+Direction GameField::getAntDirection()
+{
+    return ant.getDirection();
 }

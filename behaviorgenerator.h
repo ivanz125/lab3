@@ -8,9 +8,9 @@
 #include <thread>
 #include <mutex>
 
-#define MAX_GENERATION 500
-#define GENERATION_SIZE 500
-#define MUTATION_PROBABILITY 30
+#define MAX_GENERATION 400
+#define GENERATION_SIZE 300
+#define MUTATION_PROBABILITY 35
 
 class BehaviorGenerator {
 public:

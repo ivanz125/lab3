@@ -4,7 +4,7 @@
 BehaviorGenerator::BehaviorGenerator(GameField g, int startR, int startC) :
     gameField(g), fitBehavior(STATE_COUNT), isFound(false), startRow(startR), startCol(startC)
  {
-     srand(time(0));
+     srand(time(NULL));
      generationNumber = 0;
      currentGeneration.reserve(GENERATION_SIZE * 2);
  }
@@ -16,6 +16,7 @@ Behavior BehaviorGenerator::findBehavior()
     generate();
     while (!isFound) algorithmIteration();
     return fitBehavior;
+    //return currentGeneration.front();
 }
 
 void BehaviorGenerator::generate()
@@ -36,7 +37,8 @@ void BehaviorGenerator::generate()
 void BehaviorGenerator::fitness(Behavior& b)
 {
     lock.lock();
-    GameField g = gameField;
+    //GameField g = gameField;
+    GameField g(0, 0, b);
     b.currentState = b.states.front();
     Ant ant(&g, b, startRow, startCol);
     lock.unlock();
@@ -52,7 +54,7 @@ void BehaviorGenerator::initFitness()
 {
     for (int i = 0; i < currentGeneration.size(); i++){
         if (currentGeneration[i].fitness < 0){
-            currentGeneration[i];
+            //fitness(currentGeneration[i]);
             threads.push_back(std::thread([=] {fitness(currentGeneration[i]);}));
         }
     }
@@ -202,6 +204,6 @@ void BehaviorGenerator::algorithmIteration()
     crossoverAll();
     selection();
     if (isFound) return;
-    mutateAll();
+    //mutateAll();
     generationNumber++;
 }
